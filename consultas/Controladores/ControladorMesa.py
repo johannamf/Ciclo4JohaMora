@@ -30,7 +30,6 @@ class ControladorMesa():
         id_candidato = infoMesa["id_candidato_ganador"]
         elCandidato = Candidato(self.repositorioCandidato.findById(id_candidato))
         mesaActual.id_candidato_ganador = elCandidato
-        mesaActual.cant_votos_ganador = infoMesa["cant_votos_inscritos"]
 
         return self.repositorioMesa.save(mesaActual)
 
