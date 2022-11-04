@@ -29,7 +29,7 @@ class ControladorCandidato():
         candidatoActual.apellido = infoCandidato["apellido"]
         candidatoActual.numero_resolucion = infoCandidato["numero_resolucion"]
         id_partido = infoCandidato["id_partido"]
-        elPartido = Partido(self.repositorioPartifo.findById(id_partido))
+        elPartido = Partido(self.repositorioPartido.findById(id_partido))
         candidatoActual.id_partido = elPartido
         return self.repositorioCandidato.save(candidatoActual)
 
