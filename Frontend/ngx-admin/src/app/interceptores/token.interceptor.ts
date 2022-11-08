@@ -1,5 +1,11 @@
 import { Injectable} from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse} from '@angular/common/http';
+import { 
+  HttpRequest, 
+  HttpHandler, 
+  HttpEvent, 
+  HttpInterceptor, 
+  HttpErrorResponse
+} from '@angular/common/http';
 import { Observable, throwError} from 'rxjs';
 import { Router} from '@angular/router';
 import { SeguridadService} from '../servicios/seguridad.service';
