@@ -8,3 +8,4 @@ Instrucciones para correr el proyecto localmente:
     python3 main.py 
 - - ApiGateway: source venv/bin/activate
 - - Seguridad: mvn spring-boot:run
+- - Frontend/ngx-admin: npm start

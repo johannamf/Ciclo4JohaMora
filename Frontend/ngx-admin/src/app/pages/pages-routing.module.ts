@@ -11,6 +11,17 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [
     {
+      path: 'seguridad',
+      loadChildren: () => import('./seguridad/seguridad.module')
+      .then(m => m.SeguridadModule),
+    },
+    {
+      path: 'candidatos',
+      loadChildren: () => import('./candidatos/candidatos.module')
+      .then(m => m.CandidatosModule),
+    },
+    
+    {
       path: 'dashboard',
       component: ECommerceComponent,
     },
