@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PartidosRoutingModule } from './partidos-routing.module';
 import { ListarComponent } from './listar/listar.component';
 import { CrearComponent } from './crear/crear.component';
+import { NbCardModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { CrearComponent } from './crear/crear.component';
   ],
   imports: [
     CommonModule,
-    PartidosRoutingModule
+    PartidosRoutingModule,
+    NbCardModule
   ]
 })
 export class PartidosModule { }
