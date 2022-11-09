@@ -31,14 +31,37 @@
             </div>
             <br>
             <div class="row">
-            <div class="col-3">
-                <label>Apellido</label>
+                <div class="col-3">
+                    <label>Apellido</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elCandidato.apellido">
+                    <p *ngIf="intentoEnvio && elCandidato.apellido==''">Requerido</p>
+                </div>
             </div>
-            <div class="col-9">
-                <input class="form-control" type="text"
-                        [(ngModel)]="elCandidato.apellido">
-                <p *ngIf="intentoEnvio && elCandidato.apellido==''">Requerido</p>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <label>Numero de Resolucion</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elCandidato.numero_resolucion">
+                    <p *ngIf="intentoEnvio && elCandidato.numero_resolucion==''">Requerido</p>
+                </div>
             </div>
+            <br>
+
+            <div class="row">
+                <div class="col-3">
+                    <label>Id partido</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elCandidato.id_partido">
+                    <p *ngIf="intentoEnvio && elCandidato.id_partido==''">Requerido</p>
+                </div>
             </div>
             <br>
             <div class="row">

@@ -26,8 +26,10 @@ export class TokenInterceptor implements HttpInterceptor {
           }
           return next.handle(request).pipe(
               catchError((err: HttpErrorResponse) => {
-                this.router.navigateByUrl('/pages/seguridad/login'); 
-                return throwError(err);
+                  if (err.status === 401) {
+                      this.router.navigateByUrl('/seguridad/login');
+                  }
+                  return throwError(err);
               })
           );
       }

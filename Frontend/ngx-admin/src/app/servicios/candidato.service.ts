@@ -11,8 +11,7 @@ import { Usuario } from '../modelos/usuario.model';
 export class CandidatosService {
   constructor(private http: HttpClient) { }
   getCandidato(id: string): Observable<Candidato> {
-    return
-    this.http.get<Candidato>(`${environment.url_gateway}/candidatos/${id}`);
+    return this.http.get<Candidato>(`${environment.url_gateway}/candidatos/${id}`);
     }
   listar(): Observable<Candidato[]> {
       return this.http.get<Candidato[]>(`${environment.url_gateway}/candidatos`);
@@ -24,7 +23,6 @@ export class CandidatosService {
     return this.http.put(`${environment.url_gateway}/candidatos/${id}`, elCandidato);
   }
   crear(elCandidato: Candidato) {
-    return this.http.post(`${environment.url_gateway}/candidatos`,
-    elCandidato);
+    return this.http.post(`${environment.url_gateway}/candidatos`, elCandidato);
   }
 }

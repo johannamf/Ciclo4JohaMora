@@ -21,6 +21,7 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 import { TokenInterceptor } from './interceptores/token.interceptor';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { TokenInterceptor } from './interceptores/token.interceptor';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    FormsModule
   ],
   bootstrap: [AppComponent],
   providers: [{

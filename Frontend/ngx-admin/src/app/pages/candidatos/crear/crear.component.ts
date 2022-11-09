@@ -13,6 +13,7 @@ import {
 import {
   CandidatosService
 } from '../../../servicios/candidato.service';
+
 @Component({
   selector: 'ngx-crear',
   templateUrl: './crear.component.html',
@@ -25,15 +26,19 @@ export class CrearComponent implements OnInit {
   elCandidato: Candidato = {
       cedula: "",
       nombre: "",
-      apellido: ""
+      apellido: "",
+      numero_resolucion: "",
+      id_partido: ""
   }
   constructor(private miServicioCandidatos: CandidatosService,
       private rutaActiva: ActivatedRoute,
       private router: Router) {}
+
   ngOnInit(): void {
       if (this.rutaActiva.snapshot.params.id_candidato) {
           this.modoCreacion = false;
           this.id_candidato = this.rutaActiva.snapshot.params.id_candidato;
+          console.log(this.id_candidato);
           this.getCandidato(this.id_candidato)
       } else {
           this.modoCreacion = true;
