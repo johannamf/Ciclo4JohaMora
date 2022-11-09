@@ -5,17 +5,23 @@ import { ListarComponent } from './listar/listar.component';
 
 const routes: Routes = [
   {
-   path: 'listar',
-   component: ListarComponent
+    path : 'listar',
+    component: ListarComponent
   },
   {
-    path: 'crear',
-  component: CrearComponent
+    path : 'crear',
+    component: CrearComponent
   },
+  {
+    path : 'actualizar/:id_mesa',
+    component: CrearComponent
+  }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PartidosRoutingModule { }
+export class MesasRoutingModule { }
+

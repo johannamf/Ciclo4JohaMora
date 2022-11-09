@@ -5,6 +5,7 @@ import { PartidosRoutingModule } from './partidos-routing.module';
 import { ListarComponent } from './listar/listar.component';
 import { CrearComponent } from './crear/crear.component';
 import { NbCardModule } from '@nebular/theme';
+import { FormsModule } from '../forms/forms.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { NbCardModule } from '@nebular/theme';
     CommonModule,
     PartidosRoutingModule,
     NbCardModule
+    FormsModule
   ]
 })
 export class PartidosModule { }

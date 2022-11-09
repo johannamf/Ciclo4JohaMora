@@ -12,9 +12,9 @@
             </tr>
             <ng-container *ngFor="let mesaActual of mesas">
                 <tr>
-                    <td>{{mesaActual.cedula}}</td>
-                    <td>{{mesaActual.nombre}}</td>
-                    <td>{{mesaActual.apellido}} </td>
+                    <td>{{mesaActual.numero}}</td>
+                    <td>{{mesaActual.Cantidad_inscritos}}</td>
+                    <td>{{mesaActual.Total_votos}} </td>
                     <td>
                         <button type="button" class="btn btn-primary" (click)="editar(mesaActual._id)">
                             <i class="fas fa-pencil-alt"></i>

@@ -1,0 +1,78 @@
+<div class="col-lg-12">
+    <nb-card>
+        <nb-card-header *ngIf="modoCreacion">
+            CREAR PARTIDO
+        </nb-card-header>
+        <nb-card-header *ngIf="!modoCreacion">
+            ACTUALIZAR PARTIDO
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-3">
+                    <label>Cedula</label>
+                </div>
+                <div class="col-9">
+                     <input class="form-control" type="text"
+                            [disabled]="!modoCreacion"
+                            [(ngModel)]="elPartido.cedula">
+                        <p *ngIf="intentoEnvio && elPartido.cedula==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <label>Nombre</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                        [(ngModel)]="elPartido.nombre">
+                    <p *ngIf="intentoEnvio && elPartido.nombre==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <label>Apellido</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elPartido.apellido">
+                    <p *ngIf="intentoEnvio && elPartido.apellido==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <label>Numero de Resolucion</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elPartido.numero_resolucion">
+                    <p *ngIf="intentoEnvio && elPartido.numero_resolucion==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-3">
+                    <label>Id partido</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elPartido.id_partido">
+                    <p *ngIf="intentoEnvio && elPartido.id_partido==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <button *ngIf="modoCreacion" class="btn btn-primary btn-block" (click)="agregar()">
+                        Crear
+                </button>
+                <button *ngIf="!modoCreacion" class="btn btn-primary btn-block" (click)="editar()">
+                    Actualizar
+                </button>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</div>
+

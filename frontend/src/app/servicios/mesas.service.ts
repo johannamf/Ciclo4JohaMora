@@ -9,10 +9,19 @@ import { Usuario } from '../modelos/usuario.model';
 })
 export class MesasService {
   constructor(private http: HttpClient) { }
+  getMesa(id: string): Observable<Mesa> {
+    return this.http.get<Mesa>(`${environment.url_gateway}/mesas/${id}`);
+    }
   listar(): Observable<Mesa[]> {
-    return this.http.get<Mesa[]>(`${environment.url_gateway}/mesas`);
+      return this.http.get<Mesa[]>(`${environment.url_gateway}/mesas`);
   }
   eliminar(id:string){
     return this.http.delete<Mesa>(`${environment.url_gateway}/mesas/${id}`,);
+  }
+  editar(id:string,elMesa: Mesa) {
+    return this.http.put(`${environment.url_gateway}/mesas/${id}`, elMesa);
+  }
+  crear(elMesa: Mesa) {
+    return this.http.post(`${environment.url_gateway}/mesas`, elMesa);
   }
 }

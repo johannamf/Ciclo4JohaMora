@@ -1,0 +1,78 @@
+<div class="col-lg-12">
+    <nb-card>
+        <nb-card-header *ngIf="modoCreacion">
+            CREAR MESA
+        </nb-card-header>
+        <nb-card-header *ngIf="!modoCreacion">
+            ACTUALIZAR MESA
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-3">
+                    <label>Cedula</label>
+                </div>
+                <div class="col-9">
+                     <input class="form-control" type="text"
+                            [disabled]="!modoCreacion"
+                            [(ngModel)]="elMesas.cedula">
+                        <p *ngIf="intentoEnvio && elMesas.cedula==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <label>Nombre</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                        [(ngModel)]="elMesas.nombre">
+                    <p *ngIf="intentoEnvio && elMesas.nombre==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <label>Apellido</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elMesas.apellido">
+                    <p *ngIf="intentoEnvio && elMesas.apellido==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <label>Numero de Resolucion</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elMesas.numero_resolucion">
+                    <p *ngIf="intentoEnvio && elMesas.numero_resolucion==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-3">
+                    <label>Id partido</label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" type="text"
+                            [(ngModel)]="elMesas.id_partido">
+                    <p *ngIf="intentoEnvio && elMesas.id_partido==''">Requerido</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <button *ngIf="modoCreacion" class="btn btn-primary btn-block" (click)="agregar()">
+                        Crear
+                </button>
+                <button *ngIf="!modoCreacion" class="btn btn-primary btn-block" (click)="editar()">
+                    Actualizar
+                </button>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</div>
+
