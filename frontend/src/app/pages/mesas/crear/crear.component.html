@@ -54,12 +54,17 @@
             <br>
             <div class="row">
                 <div class="col-3">
-                    <label>Id candidato ganador</label>
+                    <label>Candidato Ganador</label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" type="text"
-                            [(ngModel)]="elMesas.id_candidato_ganador">
-                    <p *ngIf="intentoEnvio && elMesas.id_candidato_ganador==''">Requerido</p>
+                    <select class="form-control" [(ngModel)]="elMesas.id_candidato_ganador">
+                        <ng-container *ngFor="let candidatoActual of candidatos">
+                            <option value={{candidatoActual._id}}>
+                                {{candidatoActual.nombre}} {{candidatoActual.apellido}}
+                            </option>
+                        </ng-container>
+                    </select>
+                    
                 </div>
             </div>
             <br>

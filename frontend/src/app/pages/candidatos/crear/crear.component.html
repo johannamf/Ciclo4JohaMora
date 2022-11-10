@@ -13,7 +13,6 @@
                 </div>
                 <div class="col-9">
                      <input class="form-control" type="text"
-                            [disabled]="!modoCreacion"
                             [(ngModel)]="elCandidato.cedula">
                         <p *ngIf="intentoEnvio && elCandidato.cedula==''">Requerido</p>
                 </div>

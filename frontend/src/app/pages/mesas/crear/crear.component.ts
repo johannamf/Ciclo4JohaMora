@@ -7,12 +7,10 @@ import {
     Router
   } from '@angular/router';
   import Swal from 'sweetalert2';
-  import {
-    Mesa
-  } from '../../../modelos/mesa.model';
-  import {
-    MesasService
-  } from '../../../servicios/mesas.service';
+  import { Mesa } from '../../../modelos/mesa.model';
+  import { MesasService } from '../../../servicios/mesas.service';
+  import { Candidato } from '../../../modelos/candidato.model';
+  import { CandidatosService } from '../../../servicios/candidato.service';
   
   @Component({
     selector: 'ngx-crear',
@@ -23,6 +21,7 @@ import {
     modoCreacion: boolean = true;
     id_mesa: string = "";
     intentoEnvio: boolean = false;
+    candidatos: Candidato[];
     elMesas: Mesa = {
         cantidad_inscritos: "",
         total_votos: "",
@@ -32,7 +31,9 @@ import {
         numero: ""
         
     }
-    constructor(private miServicioMesas: MesasService,
+    constructor(
+        private miServicioMesas: MesasService,
+        private miServicioCandidatos: CandidatosService,
         private rutaActiva: ActivatedRoute,
         private router: Router) {}
   
@@ -45,6 +46,7 @@ import {
         } else {
             this.modoCreacion = true;
         }
+        this.listarCandidatos();
     }
     getMesas(id: string) {
         this.miServicioMesas.getMesa(id).
@@ -79,6 +81,12 @@ import {
                 this.router.navigate(["pages/mesas/listar"]);
             });
         }
+    }
+    listarCandidatos(): void {
+        this.miServicioCandidatos.listar().
+        subscribe(data => {
+            this.candidatos = data;
+        });
     }
     validarDatosCompletos(): boolean {
         this.intentoEnvio = true;
