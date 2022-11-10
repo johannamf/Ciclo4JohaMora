@@ -1,64 +1,93 @@
 import {
-  Component,
-  OnInit
-} from '@angular/core';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import {
-  Mesa
-} from '../../../modelos/mesa.model';
-import {
-  MesasService
-} from '../../../servicios/mesa.service';
-@Component({
-  selector: 'ngx-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.scss']
-})
-export class ListarComponent implements OnInit {
-  mesas: Mesa[];
-  nombresColumnas: string[] = ['Cedula', 'Nombre', 'Apellido', 'Opciones'];
-  constructor(private miServicioMesas: MesasService,
-        private router: Router) { }
-
-  ngOnInit(): void {
-      this.listar();
+    Component,
+    OnInit
+  } from '@angular/core';
+  import {
+    ActivatedRoute,
+    Router
+  } from '@angular/router';
+  import Swal from 'sweetalert2';
+  import {
+    Mesa
+  } from '../../../modelos/mesa.model';
+  import {
+    MesasService
+  } from '../../../servicios/mesas.service';
+  
+  @Component({
+    selector: 'ngx-crear',
+    templateUrl: './crear.component.html',
+    styleUrls: ['./crear.component.scss']
+  })
+  export class CrearComponent implements OnInit {
+    modoCreacion: boolean = true;
+    id_mesa: string = "";
+    intentoEnvio: boolean = false;
+    elMesas: Mesa = {
+        cantidad_inscritos: "",
+        total_votos: "",
+        cant_votos_ganador: "",
+        id_candidato_ganador: "",
+        id_partido_ganador: "",
+        numero: ""
+        
+    }
+    constructor(private miServicioMesas: MesasService,
+        private rutaActiva: ActivatedRoute,
+        private router: Router) {}
+  
+    ngOnInit(): void {
+        if (this.rutaActiva.snapshot.params.id_mesa) {
+            this.modoCreacion = false;
+            this.id_mesa = this.rutaActiva.snapshot.params.id_mesa;
+            console.log(this.id_mesa);
+            this.getMesas(this.id_mesa)
+        } else {
+            this.modoCreacion = true;
+        }
+    }
+    getMesas(id: string) {
+        this.miServicioMesas.getMesa(id).
+        subscribe(data => {
+            this.elMesas = data;
+        });
+    }
+    agregar(): void {
+        if (this.validarDatosCompletos()) {
+            this.intentoEnvio = true;
+            this.miServicioMesas.crear(this.elMesas).
+            subscribe(data => {
+                Swal.fire(
+                    'Creado',
+                    'La mesaa ha sido creado correctamente.',
+                    'success'
+                )
+                this.router.navigate(["pages/mesas/listar"]);
+            });
+        }
+    }
+    editar(): void {
+        if (this.validarDatosCompletos()) {
+            this.miServicioMesas.editar(this.elMesas._id,
+                this.elMesas).
+            subscribe(data => {
+                Swal.fire(
+                    'Actualizado',
+                    'La mesa ha sido actualizada correctamente.',
+                    'success'
+                )
+                this.router.navigate(["pages/mesas/listar"]);
+            });
+        }
+    }
+    validarDatosCompletos(): boolean {
+        this.intentoEnvio = true;
+        if (this.elMesas.numero == "" ||
+            this.elMesas.cantidad_inscritos == "" ||
+            this.elMesas.id_partido_ganador == "") {
+            return false;
+        } else {
+            return true;
+        }
+    }
   }
-  listar(): void {
-      this.miServicioMesas.listar().
-      subscribe(data => {
-          this.mesas = data;
-      });
-  }
-  agregar(): void {
-      console.log("agregando nuevo");
-      this.router.navigate(["pages/mesas/crear"]);
-  }
-  editar(id: string): void {
-      console.log("editando a " + id);
-      this.router.navigate(["pages/mesas/actualizar/"+id]);
-  }
-  eliminar(id: string): void {
-      Swal.fire({
-          title: 'Eliminar Mesa',
-          text: "Está seguro que quiere eliminar el mesa?",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Si, eliminar'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              this.miServicioMesas.eliminar(id).
-              subscribe(data => {
-                  Swal.fire(
-                      'Eliminado!',
-                      'El mesa ha sido eliminada correctamente',
-                      'success'
-                  )
-                  this.ngOnInit();
-              });
-          }
-      })
-  }
-}

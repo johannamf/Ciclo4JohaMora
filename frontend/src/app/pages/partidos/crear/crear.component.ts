@@ -1,64 +1,87 @@
 import {
-  Component,
-  OnInit
-} from '@angular/core';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import {
-  Partido
-} from '../../../modelos/partido.model';
-import {
-  PartidosService
-} from '../../../servicios/partido.service';
-@Component({
-  selector: 'ngx-listar',
-  templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.scss']
-})
-export class ListarComponent implements OnInit {
-  partidos: Partido[];
-  nombresColumnas: string[] = ['Cedula', 'Nombre', 'Apellido', 'Opciones'];
-  constructor(private miServicioPartidos: PartidosService,
-        private router: Router) { }
-
-  ngOnInit(): void {
-      this.listar();
+    Component,
+    OnInit
+  } from '@angular/core';
+  import {
+    ActivatedRoute,
+    Router
+  } from '@angular/router';
+  import Swal from 'sweetalert2';
+  import {
+    Partido
+  } from '../../../modelos/partido.model';
+  import {
+    PartidosService
+  } from '../../../servicios/partido.service';
+  
+  @Component({
+    selector: 'ngx-crear',
+    templateUrl: './crear.component.html',
+    styleUrls: ['./crear.component.scss']
+  })
+  export class CrearComponent implements OnInit {
+    modoCreacion: boolean = true;
+    id_partido: string = "";
+    intentoEnvio: boolean = false;
+    elPartido: Partido = {
+        lema: "",
+        nombre_partido: "",
+    }
+    constructor(private miServicioPartidos: PartidosService,
+        private rutaActiva: ActivatedRoute,
+        private router: Router) {}
+  
+    ngOnInit(): void {
+        if (this.rutaActiva.snapshot.params.id_partido) {
+            this.modoCreacion = false;
+            this.id_partido = this.rutaActiva.snapshot.params.id_partido;
+            console.log(this.id_partido);
+            this.getPartido(this.id_partido)
+        } else {
+            this.modoCreacion = true;
+        }
+    }
+    getPartido(id: string) {
+        this.miServicioPartidos.getPartido(id).
+        subscribe(data => {
+            this.elPartido = data;
+        });
+    }
+    agregar(): void {
+        if (this.validarDatosCompletos()) {
+            this.intentoEnvio = true;
+            this.miServicioPartidos.crear(this.elPartido).
+            subscribe(data => {
+                Swal.fire(
+                    'Creado',
+                    'El partido ha sido creado correctamente',
+                    'success'
+                )
+                this.router.navigate(["pages/partidos/listar"]);
+            });
+        }
+    }
+    editar(): void {
+        if (this.validarDatosCompletos()) {
+            this.miServicioPartidos.editar(this.elPartido._id,
+                this.elPartido).
+            subscribe(data => {
+                Swal.fire(
+                    'Actualizado',
+                    'El partido ha sido actualizado correctamente',
+                    'success'
+                )
+                this.router.navigate(["pages/partidos/listar"]);
+            });
+        }
+    }
+    validarDatosCompletos(): boolean {
+        this.intentoEnvio = true;
+        if (this.elPartido.lema == "" ||
+            this.elPartido.nombre_partido == "") {
+            return false;
+        } else {
+            return true;
+        }
+    }
   }
-  listar(): void {
-      this.miServicioPartidos.listar().
-      subscribe(data => {
-          this.partidos = data;
-      });
-  }
-  agregar(): void {
-      console.log("agregando nuevo");
-      this.router.navigate(["pages/partidos/crear"]);
-  }
-  editar(id: string): void {
-      console.log("editando a " + id);
-      this.router.navigate(["pages/partidos/actualizar/"+id]);
-  }
-  eliminar(id: string): void {
-      Swal.fire({
-          title: 'Eliminar Partido',
-          text: "Está seguro que quiere eliminar el partido?",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Si, eliminar'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              this.miServicioPartidos.eliminar(id).
-              subscribe(data => {
-                  Swal.fire(
-                      'Eliminado!',
-                      'El partido ha sido eliminada correctamente',
-                      'success'
-                  )
-                  this.ngOnInit();
-              });
-          }
-      })
-  }
-}

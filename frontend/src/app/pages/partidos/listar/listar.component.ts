@@ -7,9 +7,8 @@ import Swal from 'sweetalert2';
 import {
   Partido
 } from '../../../modelos/partido.model';
-import {
-  PartidosService
-} from '../../../servicios/partido.service';
+import { PartidosService } from '../../../servicios/partido.service';
+
 @Component({
   selector: 'ngx-listar',
   templateUrl: './listar.component.html',

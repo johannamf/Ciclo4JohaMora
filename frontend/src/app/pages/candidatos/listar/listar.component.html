@@ -13,8 +13,8 @@
             <ng-container *ngFor="let candidatoActual of candidatos">
                 <tr>
                     <td>{{candidatoActual.cedula}}</td>
-                    <td>{{candidatoActual.nombre}}</td>
-                    <td>{{candidatoActual.apellido}} </td>
+                    <td>{{candidatoActual.nombre}} {{candidatoActual.apellido}} </td>
+                    <td>{{candidatoActual.id_partido.nombre_partido}} </td>
                     <td>
                         <button type="button" class="btn btn-primary" (click)="editar(candidatoActual._id)">
                             <i class="fas fa-pencil-alt"></i>

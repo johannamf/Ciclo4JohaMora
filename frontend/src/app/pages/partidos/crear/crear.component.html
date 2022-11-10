@@ -9,58 +9,23 @@
         <nb-card-body>
             <div class="row">
                 <div class="col-3">
-                    <label>Cedula</label>
+                    <label>Lema</label>
                 </div>
                 <div class="col-9">
                      <input class="form-control" type="text"
-                            [disabled]="!modoCreacion"
-                            [(ngModel)]="elPartido.cedula">
-                        <p *ngIf="intentoEnvio && elPartido.cedula==''">Requerido</p>
+                            [(ngModel)]="elPartido.lema">
+                        <p *ngIf="intentoEnvio && elPartido.lema==''">Requerido</p>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-3">
-                    <label>Nombre</label>
+                    <label>Nombre del partido</label>
                 </div>
                 <div class="col-9">
                     <input class="form-control" type="text"
-                        [(ngModel)]="elPartido.nombre">
-                    <p *ngIf="intentoEnvio && elPartido.nombre==''">Requerido</p>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-3">
-                    <label>Apellido</label>
-                </div>
-                <div class="col-9">
-                    <input class="form-control" type="text"
-                            [(ngModel)]="elPartido.apellido">
-                    <p *ngIf="intentoEnvio && elPartido.apellido==''">Requerido</p>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-3">
-                    <label>Numero de Resolucion</label>
-                </div>
-                <div class="col-9">
-                    <input class="form-control" type="text"
-                            [(ngModel)]="elPartido.numero_resolucion">
-                    <p *ngIf="intentoEnvio && elPartido.numero_resolucion==''">Requerido</p>
-                </div>
-            </div>
-            <br>
-
-            <div class="row">
-                <div class="col-3">
-                    <label>Id partido</label>
-                </div>
-                <div class="col-9">
-                    <input class="form-control" type="text"
-                            [(ngModel)]="elPartido.id_partido">
-                    <p *ngIf="intentoEnvio && elPartido.id_partido==''">Requerido</p>
+                        [(ngModel)]="elPartido.nombre_partido">
+                    <p *ngIf="intentoEnvio && elPartido.nombre_partido==''">Requerido</p>
                 </div>
             </div>
             <br>

@@ -64,7 +64,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'LogOut',
-        link: '/auth/reset-password',
+        link: '/auth/logout',
       },
     ],
   },

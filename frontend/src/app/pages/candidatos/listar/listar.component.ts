@@ -4,12 +4,8 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import {
-  Candidato
-} from '../../../modelos/candidato.model';
-import {
-  CandidatosService
-} from '../../../servicios/candidato.service';
+import { Candidato } from '../../../modelos/candidato.model';
+import { CandidatosService } from '../../../servicios/candidato.service';
 @Component({
   selector: 'ngx-listar',
   templateUrl: './listar.component.html',
@@ -17,7 +13,7 @@ import {
 })
 export class ListarComponent implements OnInit {
   candidatos: Candidato[];
-  nombresColumnas: string[] = ['Cedula', 'Nombre', 'Apellido', 'Opciones'];
+  nombresColumnas: string[] = ['Cedula', 'Nombre / Apellido', 'Partido', 'Opciones'];
   constructor(private miServicioCandidatos: CandidatosService,
         private router: Router) { }
 

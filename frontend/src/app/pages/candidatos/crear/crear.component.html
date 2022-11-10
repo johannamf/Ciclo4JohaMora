@@ -55,11 +55,16 @@
 
             <div class="row">
                 <div class="col-3">
-                    <label>Id partido</label>
+                    <label>Partido</label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" type="text"
-                            [(ngModel)]="elCandidato.id_partido">
+                    <select class="form-control" [(ngModel)]="elCandidato.id_partido">
+                        <ng-container *ngFor="let partidoActual of partidos">
+                            <option value={{partidoActual._id}}>
+                                {{partidoActual.nombre_partido}}
+                            </option>
+                        </ng-container>
+                    </select>
                     <p *ngIf="intentoEnvio && elCandidato.id_partido==''">Requerido</p>
                 </div>
             </div>
