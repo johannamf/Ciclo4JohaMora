@@ -14,8 +14,10 @@ import { Subject } from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
-  userPictureOnly: boolean = false;
+  userPictureOnly: boolean = true;
   user: any;
+
+  
 
   themes = [
     {
@@ -50,10 +52,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-
+    let session = localStorage.getItem('sesion');
+    session = JSON.parse(session);
+    console.log(session["seudonimo"]);
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
+      .subscribe((users: any) => this.user = {"name":session["seudonimo"],"image":"/"});
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()

@@ -54,10 +54,11 @@ export class SeguridadService {
    * fue almacenada correctamente
    */
   guardarDatosSesion(datosSesion: any) {
-      let sesionActual = localStorage.getItem('sesion');
       let data: Usuario = {
           _id: datosSesion.user_id,
           token: datosSesion.token,
+          correo: datosSesion.correo,
+          seudonimo: datosSesion.seudonimo
       };
       localStorage.setItem('sesion', JSON.stringify(data));
       this.setUsuario(data);

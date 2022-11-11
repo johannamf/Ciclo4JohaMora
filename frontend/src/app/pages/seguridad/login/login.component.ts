@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     console.log("aqui" + this.correo + " contraseña " + this.contrasena)
     let elUsuario: Usuario = {
         correo: this.correo,
-        contrasena: this.contrasena
+        contrasena: this.contrasena,
     }
     this.miServicioSeguridad.login(elUsuario).subscribe(
         data => {

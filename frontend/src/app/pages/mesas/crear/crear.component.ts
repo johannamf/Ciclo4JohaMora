@@ -27,7 +27,7 @@ import {
         total_votos: "",
         cant_votos_ganador: "",
         id_candidato_ganador: "",
-        id_partido_ganador: "",
+        id_partido_ganador: "1",
         numero: ""
         
     }

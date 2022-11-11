@@ -17,7 +17,7 @@ import {
 })
 export class ListarComponent implements OnInit {
   mesas: Mesa[];
-  nombresColumnas: string[] = ['Numero', 'Cantidad Inscritos', 'Total Votos', 'Opciones'];
+  nombresColumnas: string[] = ['Numero', 'Inscritos', 'Total Votos','Ganador','Partido', 'Opciones'];
   constructor(private miServicioMesas: MesasService,
         private router: Router) { }
 

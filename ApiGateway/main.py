@@ -29,7 +29,7 @@ def create_token():
         user = response.json()
         expires = datetime.timedelta(seconds=60 * 60 * 24)
         access_token = create_access_token(identity=user, expires_delta=expires)
-        return jsonify({"token": access_token, "user_id": user["_id"]})
+        return jsonify({"token": access_token, "user_id": user["_id"],"correo": user["correo"],"seudonimo": user["seudonimo"]})
     else:
         return jsonify({"msg": "Bad username or password"}), 401
 

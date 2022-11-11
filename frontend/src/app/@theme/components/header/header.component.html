@@ -3,19 +3,19 @@
     <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()">App Registraduria</a>
+    <a class="logo" href="#" (click)="navigateHome()">
+      <img src="./assets/images/logoRegistraduria.png" alt="" class="registraduria">
+      
+    </a>
   </div>
-  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
-    <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
-  </nb-select>
+  
 </div>
 
 <div class="header-container">
   <nb-actions size="small">
-
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
-               [onlyPicture]="userPictureOnly"
+               [onlyPicture]="false"
                [name]="user?.name"
                [picture]="user?.picture">
       </nb-user>

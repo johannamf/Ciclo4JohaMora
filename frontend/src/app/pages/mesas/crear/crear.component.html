@@ -68,19 +68,6 @@
                 </div>
             </div>
             <br>
-
-
-            <div class="row">
-                <div class="col-3">
-                    <label>Id partido</label>
-                </div>
-                <div class="col-9">
-                    <input class="form-control" type="text"
-                            [(ngModel)]="elMesas.id_partido_ganador">
-                    <p *ngIf="intentoEnvio && elMesas.id_partido_ganador==''">Requerido</p>
-                </div>
-            </div>
-            <br>
             <div class="row">
                 <button *ngIf="modoCreacion" class="btn btn-primary btn-block" (click)="agregar()">
                         Crear
