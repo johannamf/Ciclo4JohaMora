@@ -46,6 +46,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
     ],
   },
+  
+  {
+    title: 'Resultados',
+    icon: 'star-outline',
+    children: [
+      {
+        title: 'Ver todos',
+        link: '/pages/resultados/mostrar',
+      },
+      
+  
+    ],
+  },
   {
     title: 'Usuarios',
     icon: 'lock-outline',
