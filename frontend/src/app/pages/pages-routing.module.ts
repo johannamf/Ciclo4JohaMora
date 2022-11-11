@@ -21,6 +21,11 @@ const routes: Routes = [{
       .then(m => m.SeguridadModule),
     },
     {
+      path: 'resultados',
+      loadChildren: () => import('./resultados/resultados.module')
+      .then(m => m.ResultadosModule),
+    },
+    {
       path: 'candidatos',
       loadChildren: () => import('./candidatos/candidatos.module')
       .then(m => m.CandidatosModule),
