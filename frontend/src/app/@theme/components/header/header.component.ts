@@ -43,22 +43,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
 
   constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserData,
+    private layoutService: LayoutService,
+    private breakpointService: NbMediaBreakpointsService) {
   }
 
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
     let session = localStorage.getItem('sesion');
     session = JSON.parse(session);
-    console.log(session["seudonimo"]);
-    this.userService.getUsers()
+  
+    if( session != null){
+      console.log(session["seudonimo"]);
+      this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => this.user = {"name":session["seudonimo"],"image":"/"});
-
+    }
+   
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(

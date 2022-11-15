@@ -26,8 +26,16 @@ export class TokenInterceptor implements HttpInterceptor {
           }
           return next.handle(request).pipe(
               catchError((err: HttpErrorResponse) => {
-                  if (err.status === 401) {
+                  if (err.status === 401 || err.status === 422) {
                       this.router.navigateByUrl('/pages/seguridad/login');
+                      Swal.fire({
+                        title: 'Reiniciar Sesion',
+                        text: "Su token de acceso a expirado. Porfavor logeese de nuevo.",
+                        icon: 'warning',
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'De acuerdo'
+                    })
                   }
                   return throwError(err);
               })

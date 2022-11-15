@@ -68,16 +68,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/seguridad/login',
       },
       {
-        title: 'Registrar Nuevo Usuario',
-        link: '/auth/register',
-      },
-      {
-        title: 'Solicitar Password',
-        link: '/auth/request-password',
-      },
-      {
         title: 'LogOut',
-        link: '/auth/logout',
+        link: '/pages/seguridad/logout',
       },
     ],
   },

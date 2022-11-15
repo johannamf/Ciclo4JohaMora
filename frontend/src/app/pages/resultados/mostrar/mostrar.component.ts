@@ -22,21 +22,52 @@ export class MostrarComponent implements OnInit {
   total_votantes_inscritos: any;
   total_votos: any;
   cant_votos_ganador: any;
-  conteo_votos: number;
+  conteo_votos;
   id_candidato_ganador: any;
+  lista_candidatos: any;
+  id_ganador;
+  
   nombresColumnas: string[] = ['Numero', 'Inscritos', 'Total Votos','Ganador','Partido', 'Opciones'];
   constructor(private miServicioMesas: MesasService,
-        private router: Router) { }
+        private router: Router, private miServicioCandidatos: CandidatosService) { }
 
   ngOnInit(): void {
-      this.listar();
+    this.listarMesas();
+   
+      
   }
-  listar(): void {
+  listarMesas(): void {
       this.miServicioMesas.listar().
       subscribe(data => {
           this.mesas = data;
+  
           this.contar(data);
       });
+  }
+  listarCandidatos(conteo): void {
+    this.miServicioCandidatos.listar().
+    subscribe(data => {
+        this.lista_candidatos = data;
+        this.encontrarGanador(data,conteo)
+    
+    });
+  }
+  encontrarGanador(candidatos,conteo){
+    let max = 0 ;
+    let max_id = ""
+    for (let i = 0; i < candidatos.length; i++){
+      let id = candidatos[i]["_id"];
+      let votos = conteo[id];
+      if(votos > max ){
+        max = votos;
+        max_id = id;
+      }
+
+    }
+    this.id_ganador = max_id;
+    console.log(conteo);
+    console.log ("El id del ganador es" + this.id_ganador);
+
   }
   contar(mesas) {
     let contador = 0;
@@ -44,7 +75,7 @@ export class MostrarComponent implements OnInit {
     let total_votos = 0 ;
     let cant_votos_ganador = 0;
     let conteo_votos = [];
-    console.log(mesas);
+    
     for (let i = 0; i < mesas.length; i++){
       contador = contador + 1;
       let ganador_mesa_id = mesas[i]["id_candidato_ganador"]["_id"];
@@ -56,17 +87,14 @@ export class MostrarComponent implements OnInit {
       } else {
         conteo_votos[ganador_mesa_id] = 1;
       }
-      
     }
-    // let maxX = Math.max(conteo_votos);
-    // let index = conteo_votos.indexOf(maxX);
-    console.log('Array votos es: ' );
-    console.log(conteo_votos);
+    
     this.cantidad_mesas = contador;
     this.total_votantes_inscritos = total_votantes_inscritos;
     this.total_votos = total_votos;
     this.cant_votos_ganador = cant_votos_ganador;
-    //this.conteo_votos = index;
+    this.conteo_votos = conteo_votos;
+    this.listarCandidatos(conteo_votos);
   }
 
   agregar(): void {
