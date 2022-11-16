@@ -3,6 +3,16 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   
   {
+    title: 'Home',
+    icon: 'home-outline',
+    link: '/'
+  },
+  {
+    title: 'Nosotros',
+    icon: 'globe-outline',
+    link: '/pages/nosotros',
+  },
+  {
     title: 'Candidatos',
     icon: 'people-outline',
     children: [
@@ -50,14 +60,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Resultados',
     icon: 'star-outline',
-    children: [
-      {
-        title: 'Ver todos',
-        link: '/pages/resultados/mostrar',
-      },
-      
-  
-    ],
+    link: '/pages/resultados/mostrar',
   },
   {
     title: 'Usuarios',
