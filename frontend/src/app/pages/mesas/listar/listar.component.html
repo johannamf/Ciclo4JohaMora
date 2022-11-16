@@ -14,8 +14,9 @@
                 <tr>
                     <td>{{mesaActual.numero}}</td>
                     <td>{{mesaActual.cantidad_inscritos}}</td>
-                    <td>{{mesaActual.total_votos}} </td>
+                    <td>{{mesaActual.total_votos}} </td>                   
                     <td>{{mesaActual.id_candidato_ganador.nombre}} {{mesaActual.id_candidato_ganador.apellido}} </td>
+                    <td>{{mesaActual.cant_votos_ganador}} </td>
                     <td>{{mesaActual.id_candidato_ganador.id_partido.nombre_partido}} </td>
                     <td>
                         <button type="button" class="btn btn-primary" (click)="editar(mesaActual._id)">

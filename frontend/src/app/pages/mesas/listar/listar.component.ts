@@ -18,9 +18,11 @@ import { CandidatosService } from '../../../servicios/candidato.service';
 export class ListarComponent implements OnInit {
   mesas: Mesa[];
   candidato: Candidato[];
-  nombresColumnas: string[] = ['Numero', 'Inscritos', 'Total Votos','Ganador','Partido', 'Opciones'];
-  constructor(private miServicioMesas: MesasService,
-        private router: Router) { }
+  nombresColumnas: string[] = ['Numero', 'Inscritos', 'Total Votos','Ganador','Votos Ganador','Partido', 'Opciones'];
+  constructor(
+    private miServicioMesas: MesasService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
       this.listar();

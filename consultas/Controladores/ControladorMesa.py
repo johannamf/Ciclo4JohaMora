@@ -26,6 +26,7 @@ class ControladorMesa():
         mesaActual = Mesa(self.repositorioMesa.findById(id))
         mesaActual.numero = infoMesa["numero"]
         mesaActual.cantidad_inscritos = infoMesa["cantidad_inscritos"]
+        mesaActual.cant_votos_ganador = infoMesa["cant_votos_ganador"]
         mesaActual.total_votos = infoMesa["total_votos"]
         id_candidato = infoMesa["id_candidato_ganador"]
         elCandidato = Candidato(self.repositorioCandidato.findById(id_candidato))
