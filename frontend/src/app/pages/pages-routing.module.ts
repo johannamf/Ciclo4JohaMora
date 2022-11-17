@@ -2,9 +2,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ECommerceComponent } from './e-commerce/e-commerce.component';
-import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 
 const routes: Routes = [{
@@ -31,12 +28,6 @@ const routes: Routes = [{
       loadChildren: () => import('./candidatos/candidatos.module')
       .then(m => m.CandidatosModule),
     },
-    
-    {
-      path: 'dashboard',
-      component: ECommerceComponent,
-    },
-    
     {
       path: 'mesas',
       loadChildren: () => import('./mesas/mesas.module')
@@ -52,10 +43,7 @@ const routes: Routes = [{
       .then(m => m.PartidosModule),
     },
 
-    {
-      path: '**',
-      component: NotFoundComponent,
-    },
+  
   ],
 }];
 
