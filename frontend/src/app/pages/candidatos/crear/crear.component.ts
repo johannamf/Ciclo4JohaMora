@@ -22,6 +22,7 @@ export class CrearComponent implements OnInit {
   id_candidato: string = "";
   intentoEnvio: boolean = false;
   partidos: Partido[];
+  id_partido;
   elCandidato: Candidato = {
       cedula: "",
       nombre: "",
@@ -51,7 +52,9 @@ export class CrearComponent implements OnInit {
   getCandidato(id: string) {
       this.miServicioCandidatos.getCandidato(id).
       subscribe(data => {
-          this.elCandidato = data;
+
+        this.elCandidato = data;
+        this.seleccionarPartidoActual(data.id_partido["_id"]);
       });
   }
   agregar(): void {
@@ -70,8 +73,14 @@ export class CrearComponent implements OnInit {
   }
   editar(): void {
       if (this.validarDatosCompletos()) {
-          this.miServicioCandidatos.editar(this.elCandidato._id,
-              this.elCandidato).
+          let partido_id = document.getElementById('select-partido') as HTMLInputElement;
+          this.id_partido = partido_id.value;
+          console.log('El id del partido es ' +  this.id_partido);
+          this.elCandidato["id_partido"] = this.id_partido;
+          this.miServicioCandidatos.editar(
+            this.elCandidato._id,
+            this.elCandidato
+          ).
           subscribe(data => {
               Swal.fire(
                   'Actualizado',
@@ -98,5 +107,12 @@ export class CrearComponent implements OnInit {
       } else {
           return true;
       }
+  }
+
+  seleccionarPartidoActual(id_partido){
+    console.log("Seleccionar partido actual " + id_partido);
+    const selectField = document.getElementById("select-partido") as HTMLInputElement;
+    console.log(selectField);
+        selectField.value = id_partido ;
   }
 }
