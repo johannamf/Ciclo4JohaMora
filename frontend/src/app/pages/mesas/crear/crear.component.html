@@ -57,12 +57,10 @@
                     <label>Candidato Ganador</label>
                 </div>
                 <div class="col-9">
-                    <select class="form-control" [(ngModel)]="elMesas.id_candidato_ganador">
-                        <ng-container *ngFor="let candidatoActual of candidatos">
-                            <option value={{candidatoActual._id}}>
-                                {{candidatoActual.nombre}} {{candidatoActual.apellido}}
-                            </option>
-                        </ng-container>
+                    <select class="form-control" name="candidatos" id="select-candidato" value="">   
+                        <option value={{candidatoActual._id}}  *ngFor="let candidatoActual of candidatos">
+                            {{candidatoActual.nombre}} {{candidatoActual.apellido}}
+                        </option>                       
                     </select>
                     
                 </div>

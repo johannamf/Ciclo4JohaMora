@@ -21,6 +21,7 @@ import {
     modoCreacion: boolean = true;
     id_mesa: string = "";
     intentoEnvio: boolean = false;
+    id_candidato;
     candidatos: Candidato[];
     elMesas: Mesa = {
         cantidad_inscritos: "",
@@ -41,17 +42,19 @@ import {
         if (this.rutaActiva.snapshot.params.id_mesa) {
             this.modoCreacion = false;
             this.id_mesa = this.rutaActiva.snapshot.params.id_mesa;
-            console.log(this.id_mesa);
-            this.getMesas(this.id_mesa)
+            // console.log(this.id_mesa);
+            this.getMesa(this.id_mesa)
         } else {
             this.modoCreacion = true;
         }
         this.listarCandidatos();
     }
-    getMesas(id: string) {
+    getMesa(id: string) {
         this.miServicioMesas.getMesa(id).
         subscribe(data => {
             this.elMesas = data;
+            let id_ganador = data.id_candidato_ganador['_id'];
+            this.seleccionarCandidatoActual(id_ganador);
         });
     }
     agregar(): void {
@@ -70,8 +73,14 @@ import {
     }
     editar(): void {
         if (this.validarDatosCompletos()) {
-            this.miServicioMesas.editar(this.elMesas._id,
-                this.elMesas).
+            let candidato_id = document.getElementById('select-candidato') as HTMLInputElement;
+            this.id_candidato = candidato_id.value;
+            this.elMesas["id_candidato_ganador"] = this.id_candidato;
+        
+            this.miServicioMesas.editar(
+                this.elMesas._id,
+                this.elMesas
+            ).
             subscribe(data => {
                 Swal.fire(
                     'Actualizado',
@@ -98,4 +107,11 @@ import {
             return true;
         }
     }
+    seleccionarCandidatoActual(id_candidato){
+    
+        const selectField = document.getElementById("select-candidato") as HTMLInputElement;
+        console.log(selectField);
+        console.log(id_candidato);
+        setTimeout(()=>{selectField.value = id_candidato} ,1000);
+      }
   }

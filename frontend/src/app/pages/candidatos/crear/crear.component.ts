@@ -52,7 +52,6 @@ export class CrearComponent implements OnInit {
   getCandidato(id: string) {
       this.miServicioCandidatos.getCandidato(id).
       subscribe(data => {
-
         this.elCandidato = data;
         this.seleccionarPartidoActual(data.id_partido["_id"]);
       });
@@ -113,6 +112,6 @@ export class CrearComponent implements OnInit {
     console.log("Seleccionar partido actual " + id_partido);
     const selectField = document.getElementById("select-partido") as HTMLInputElement;
     console.log(selectField);
-        selectField.value = id_partido ;
+    selectField.value = id_partido ;
   }
 }
