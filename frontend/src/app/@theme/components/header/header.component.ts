@@ -5,6 +5,8 @@ import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { SeguridadService} from '../../../servicios/seguridad.service';
+
 
 @Component({
   selector: 'ngx-header',
@@ -16,9 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = true;
   user: any;
-
-  
-
+  public logged_in : any;
   themes = [
     {
       value: 'default',
@@ -41,16 +41,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu = [ { title: 'Log out', link: '/pages/seguridad/logout' } ];
-
-  constructor(private sidebarService: NbSidebarService,
+  public sesion: boolean;
+  constructor(
+    private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
     private themeService: NbThemeService,
     private userService: UserData,
     private layoutService: LayoutService,
-    private breakpointService: NbMediaBreakpointsService) {
+    private breakpointService: NbMediaBreakpointsService,
+    private miServicioSeguridad: SeguridadService,
+   
+    
+   ) {
   }
 
   ngOnInit() {
+    this.sesion = this.miServicioSeguridad.sesionExiste();
+    console.log('sesion existe ' + this.sesion);
+
     this.currentTheme = this.themeService.currentTheme;
     let session = localStorage.getItem('sesion');
     session = JSON.parse(session);
@@ -60,6 +68,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => this.user = {"name":session["seudonimo"],"image":"/"});
+      this.logged_in = "true";
+    } else {
+      this.logged_in = "false";
     }
    
     const { xl } = this.breakpointService.getBreakpointsMap();
@@ -97,5 +108,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  logInUpdate(valor:Boolean):boolean{
+    this.logged_in = this.logInUpdate;
+    return true;
   }
 }

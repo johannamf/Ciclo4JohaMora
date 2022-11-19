@@ -11,7 +11,7 @@ import { Candidato } from '../../../modelos/candidato.model';
 import { CandidatosService } from '../../../servicios/candidato.service';
 import { Partido } from '../../../modelos/partido.model';
 import { PartidosService } from '../../../servicios/partido.service';
-
+import { SeguridadService} from '../../../servicios/seguridad.service';
 @Component({
   selector: 'ngx-crear',
   templateUrl: './crear.component.html',
@@ -33,21 +33,27 @@ export class CrearComponent implements OnInit {
   constructor(private miServicioCandidatos: CandidatosService,
       private rutaActiva: ActivatedRoute,
       private miServicioPartidos: PartidosService,
-      
-      private router: Router) {}
+      private miServicioSeguridad: SeguridadService,
+      private router: Router
+    ) {}
 
   ngOnInit(): void {
-      if (this.rutaActiva.snapshot.params.id_candidato) {
-          this.modoCreacion = false;
-          this.id_candidato = this.rutaActiva.snapshot.params.id_candidato;
-          console.log(this.id_candidato);
-          this.getCandidato(this.id_candidato);
-          
-      } else {
-          this.modoCreacion = true;
-      }
-      console.log(this.partidos);
-      this.listarPartidos();
+        // Validar sesion
+        // let sesion_existe = this.miServicioSeguridad.sesionExiste();
+        // if (!sesion_existe){
+        //     // console.log('Sesion existe ' +  sesion_existe);
+        //     this.router.navigate(['pages/seguridad/login']);
+        // }
+        if (this.rutaActiva.snapshot.params.id_candidato) {
+            this.modoCreacion = false;
+            this.id_candidato = this.rutaActiva.snapshot.params.id_candidato;
+            console.log(this.id_candidato);
+            this.getCandidato(this.id_candidato);
+        } else {
+            this.modoCreacion = true;
+        }
+        console.log(this.partidos);
+        this.listarPartidos();
   }
   getCandidato(id: string) {
       this.miServicioCandidatos.getCandidato(id).

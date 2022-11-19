@@ -11,7 +11,7 @@
   
 </div>
 
-<div class="header-container">
+<div class="header-container" *ngIf="sesion" >
   <nb-actions size="small">
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"

@@ -30,17 +30,17 @@ export class TokenInterceptor implements HttpInterceptor {
                       Swal.fire({
                         title: 'No autorizado',
                         text: "Su usuario no cuenta con los permisos necesarios para ejecutar esta accion.",
-                        icon: 'warning',
+                        icon: 'error',
                         showCancelButton: false,
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'De acuerdo'
-                    })
+                    }).then((result) =>{ this.router.navigate(['/pages']);} );
                   }
                   else if ( err.status === 422 ) {
                     this.router.navigateByUrl('/pages/seguridad/login');
                     Swal.fire({
-                      title: 'Reiniciar Sesion',
-                      text: "Su token de acceso a expirado. \n Porfavor logeese de nuevo.",
+                      title: 'Pagina Privada',
+                      text: "Su token de acceso a expirado o su usuario no cuenta con permisos necesarios para verla. \n Porfavor logeese de nuevo o asegurese de contar con los permisos necesarios.",
                       icon: 'warning',
                       showCancelButton: false,
                       confirmButtonColor: '#3085d6',
