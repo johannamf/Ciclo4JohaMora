@@ -14,7 +14,8 @@
                 <div class="col-9">
                      <input class="form-control" type="text"
                             [disabled]="!modoCreacion"
-                            [(ngModel)]="elMesas.numero">
+                            [(ngModel)]="elMesas.numero"
+                            type="number">
                         <p *ngIf="intentoEnvio && elMesas.numero==''">Requerido</p>
                 </div>
             </div>
@@ -25,7 +26,8 @@
                 </div>
                 <div class="col-9">
                     <input class="form-control" type="text"
-                        [(ngModel)]="elMesas.cantidad_inscritos">
+                        [(ngModel)]="elMesas.cantidad_inscritos"
+                        type="number">
                     <p *ngIf="intentoEnvio && elMesas.cantidad_inscritos==''">Requerido</p>
                 </div>
             </div>

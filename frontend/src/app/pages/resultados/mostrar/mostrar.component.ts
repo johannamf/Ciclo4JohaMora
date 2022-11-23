@@ -44,6 +44,16 @@ export class MostrarComponent implements OnInit {
     this.listarMesas();
     this.candidato_ganador_full = "";
     this.nombre_partido_ganador = "";
+    Swal.fire({
+      title: 'Calculando Datos...',
+      text: "Un Momento, estamos calculando el resultado de la votacion." ,
+      icon: 'info',
+      timer: 4000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      showLoaderOnConfirm: true,
+    });
+  
   }
   listarMesas(): void {
       this.miServicioMesas.listar().
@@ -69,6 +79,12 @@ export class MostrarComponent implements OnInit {
         // console.log(data);
         this.candidato_ganador_full = data;
         this.nombre_partido_ganador = data["id_partido"]["nombre_partido"];
+        Swal.fire({
+          title: 'El Ganador es:  \n' + data["nombre"] + " " + data["apellido"] ,
+          text: "Felicitaciones al candidato ganador y al partido " +data["id_partido"]["nombre_partido"] + "." ,
+          icon: 'success',
+          timer: 5000
+        });
         
     });
   }
@@ -88,6 +104,7 @@ export class MostrarComponent implements OnInit {
     this.cant_votos_ganador = max;
     console.log(conteo);
     console.log ("El id del ganador es " + this.id_ganador);
+
     this.candidatoPorId(this.id_ganador);
 
   }
