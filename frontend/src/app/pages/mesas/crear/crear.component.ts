@@ -28,7 +28,6 @@ import {
         total_votos: "",
         cant_votos_ganador: "",
         id_candidato_ganador: "",
-        id_partido_ganador: "1",
         numero: ""
         
     }
@@ -36,7 +35,8 @@ import {
         private miServicioMesas: MesasService,
         private miServicioCandidatos: CandidatosService,
         private rutaActiva: ActivatedRoute,
-        private router: Router) {}
+        private router: Router
+        ) {}
   
     ngOnInit(): void {
         if (this.rutaActiva.snapshot.params.id_mesa) {
@@ -100,15 +100,14 @@ import {
     validarDatosCompletos(): boolean {
         this.intentoEnvio = true;
         if (this.elMesas.numero == "" ||
-            this.elMesas.cantidad_inscritos == "" ||
-            this.elMesas.id_partido_ganador == "") {
+            this.elMesas.cantidad_inscritos == ""
+        ) {
             return false;
         } else {
             return true;
         }
     }
     seleccionarCandidatoActual(id_candidato){
-    
         const selectField = document.getElementById("select-candidato") as HTMLInputElement;
         console.log(selectField);
         console.log(id_candidato);

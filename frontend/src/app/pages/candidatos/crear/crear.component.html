@@ -57,7 +57,7 @@
                     <label>Partido</label>
                 </div>
                 <div class="col-9">
-                    <select class="form-control" name="partidos" id="select-partido" value="">
+                    <select class="form-control" name="partidos" id="select-partido" value="" [(ngModel)]="elCandidato.id_partido">
                         <option value={{partidoActual._id}} *ngFor="let partidoActual of partidos"  >
                             {{partidoActual.nombre_partido}}
                         </option>   

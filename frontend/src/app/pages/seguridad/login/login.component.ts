@@ -9,7 +9,7 @@ import { SeguridadService} from '../../../servicios/seguridad.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   correo: string = "";
   contrasena: string = "";
   constructor(
@@ -20,19 +20,16 @@ export class LoginComponent implements OnInit {
    * Método que se ejecuta una vez se carga la página
    */
   ngOnInit(): void {
-    let sesion_existe = this.miServicioSeguridad.sesionExiste();
-    console.log('login sesion ' + sesion_existe);
-    if(sesion_existe == false){
-      this.router.navigate(['/pages/seguridad/login']);
-    } else {
-      this.router.navigate(['/pages/']);
-      Swal.fire({
-        title: 'Sesion Existe',
-        text: "Ud ya se encuentra logeado en el sistema.",
-        icon: 'warning',
-        timer: 5000
-      });
-    }
+    // let sesion_existe = this.miServicioSeguridad.sesionExiste();
+    // console.log('Login sesion ? :' + sesion_existe);
+    // if( sesion_existe ){
+    //   Swal.fire({
+    //     title: 'Sesion Existe',
+    //     text: "Ud ya se encuentra logeado en el sistema pero puede volver a logearse con otro usuario o renovar su usuario actual.",
+    //     icon: 'warning',
+    //     timer: 5000
+    //   });
+    // }
   }
 
   /**

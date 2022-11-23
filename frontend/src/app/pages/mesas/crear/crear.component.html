@@ -57,7 +57,7 @@
                     <label>Candidato Ganador</label>
                 </div>
                 <div class="col-9">
-                    <select class="form-control" name="candidatos" id="select-candidato" value="">   
+                    <select class="form-control" name="candidatos" id="select-candidato" value="" [(ngModel)]="elMesas.id_candidato_ganador">   
                         <option value={{candidatoActual._id}}  *ngFor="let candidatoActual of candidatos">
                             {{candidatoActual.nombre}} {{candidatoActual.apellido}}
                         </option>                       
