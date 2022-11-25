@@ -41,7 +41,7 @@
         font-size: 1.75rem;
       }
     }
-
+    
     .logo {
       padding: 0 1.25rem;
       font-size: 1.75rem;
@@ -50,6 +50,8 @@
       white-space: nowrap;
       text-decoration: none;
     }
+
+
   }
 
   @include media-breakpoint-down(sm) {
@@ -69,3 +71,4 @@
   }
 }
 .registraduria{width: 150px;}
+.login{text-decoration: none;}

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
   template: `
     <span class="creadopor">
-      Creado con ♥ por <b> Johanna Mora - 2022</b>
+      Creado con ♥ por <b> Johanna Mora Fajardo- 2022</b>
     </span>
     
   `,

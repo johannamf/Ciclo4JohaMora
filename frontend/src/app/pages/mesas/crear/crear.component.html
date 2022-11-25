@@ -12,11 +12,11 @@
                     <label>Numero</label>
                 </div>
                 <div class="col-9">
-                     <input class="form-control" type="text"
+                     <input class="form-control" type="number"
                             [disabled]="!modoCreacion"
-                            [(ngModel)]="elMesas.numero"
+                            [(ngModel)]="laMesa.numero"
                             type="number">
-                        <p *ngIf="intentoEnvio && elMesas.numero==''">Requerido</p>
+                        <p *ngIf="intentoEnvio && laMesa.numero==''">Requerido</p>
                 </div>
             </div>
             <br>
@@ -25,10 +25,10 @@
                     <label>Cantidad de inscritos</label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" type="text"
-                        [(ngModel)]="elMesas.cantidad_inscritos"
+                    <input class="form-control" type="number"
+                        [(ngModel)]="laMesa.cantidad_inscritos"
                         type="number">
-                    <p *ngIf="intentoEnvio && elMesas.cantidad_inscritos==''">Requerido</p>
+                    <p *ngIf="intentoEnvio && laMesa.cantidad_inscritos==''">Requerido</p>
                 </div>
             </div>
             <br>
@@ -37,9 +37,9 @@
                     <label>Total de votos</label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" type="text"
-                            [(ngModel)]="elMesas.total_votos">
-                    <p *ngIf="intentoEnvio && elMesas.total_votos==''">Requerido</p>
+                    <input class="form-control" type="number"
+                            [(ngModel)]="laMesa.total_votos">
+                    <p *ngIf="intentoEnvio && laMesa.total_votos==''">Requerido</p>
                 </div>
             </div>
             <br>
@@ -48,9 +48,9 @@
                     <label>Cantidad votos del ganador</label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" type="text"
-                            [(ngModel)]="elMesas.cant_votos_ganador">
-                    <p *ngIf="intentoEnvio && elMesas.cant_votos_ganador==''">Requerido</p>
+                    <input class="form-control" type="number"
+                            [(ngModel)]="laMesa.cant_votos_ganador">
+                    <p *ngIf="intentoEnvio && laMesa.cant_votos_ganador==''">Requerido</p>
                 </div>
             </div>
             <br>
@@ -59,7 +59,7 @@
                     <label>Candidato Ganador</label>
                 </div>
                 <div class="col-9">
-                    <select class="form-control" name="candidatos" id="select-candidato" value="" [(ngModel)]="elMesas.id_candidato_ganador">   
+                    <select class="form-control" name="candidatos" id="select-candidato" value="" [(ngModel)]="laMesa.id_candidato_ganador">   
                         <option value={{candidatoActual._id}}  *ngFor="let candidatoActual of candidatos">
                             {{candidatoActual.nombre}} {{candidatoActual.apellido}}
                         </option>                       

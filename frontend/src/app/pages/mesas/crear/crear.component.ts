@@ -23,7 +23,7 @@ import {
     intentoEnvio: boolean = false;
     id_candidato;
     candidatos: Candidato[];
-    elMesas: Mesa = {
+    laMesa: Mesa = {
         cantidad_inscritos: "",
         total_votos: "",
         cant_votos_ganador: "",
@@ -52,7 +52,7 @@ import {
     getMesa(id: string) {
         this.miServicioMesas.getMesa(id).
         subscribe(data => {
-            this.elMesas = data;
+            this.laMesa = data;
             let id_ganador = data.id_candidato_ganador['_id'];
             this.seleccionarCandidatoActual(id_ganador);
         });
@@ -60,11 +60,11 @@ import {
     agregar(): void {
         if (this.validarDatosCompletos()) {
             this.intentoEnvio = true;
-            this.miServicioMesas.crear(this.elMesas).
+            this.miServicioMesas.crear(this.laMesa).
             subscribe(data => {
                 Swal.fire(
                     'Creado',
-                    'La mesaa ha sido creado correctamente.',
+                    'La mesa ha sido creado correctamente.',
                     'success'
                 )
                 this.router.navigate(["pages/mesas/listar"]);
@@ -75,11 +75,11 @@ import {
         if (this.validarDatosCompletos()) {
             let candidato_id = document.getElementById('select-candidato') as HTMLInputElement;
             this.id_candidato = candidato_id.value;
-            this.elMesas["id_candidato_ganador"] = this.id_candidato;
+            this.laMesa["id_candidato_ganador"] = this.id_candidato;
         
             this.miServicioMesas.editar(
-                this.elMesas._id,
-                this.elMesas
+                this.laMesa._id,
+                this.laMesa
             ).
             subscribe(data => {
                 Swal.fire(
@@ -99,8 +99,8 @@ import {
     }
     validarDatosCompletos(): boolean {
         this.intentoEnvio = true;
-        if (this.elMesas.numero == "" ||
-            this.elMesas.cantidad_inscritos == ""
+        if (this.laMesa.numero == "" ||
+            this.laMesa.cantidad_inscritos == ""
         ) {
             return false;
         } else {
@@ -111,6 +111,6 @@ import {
         const selectField = document.getElementById("select-candidato") as HTMLInputElement;
         console.log(selectField);
         console.log(id_candidato);
-        setTimeout(()=>{selectField.value = id_candidato} ,1000);
+        setTimeout(()=>{selectField.value = id_candidato} ,2000);
       }
   }

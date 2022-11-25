@@ -12,7 +12,7 @@
                     <label>Cedula</label>
                 </div>
                 <div class="col-9">
-                     <input class="form-control" type="text"
+                     <input class="form-control" type="number"
                             [(ngModel)]="elCandidato.cedula">
                         <p *ngIf="intentoEnvio && elCandidato.cedula==''">Requerido</p>
                 </div>
@@ -45,7 +45,7 @@
                     <label>Numero de Resolucion</label>
                 </div>
                 <div class="col-9">
-                    <input class="form-control" type="text"
+                    <input class="form-control" type="number"
                             [(ngModel)]="elCandidato.numero_resolucion">
                     <p *ngIf="intentoEnvio && elCandidato.numero_resolucion==''">Requerido</p>
                 </div>
